@@ -12,6 +12,10 @@ const wrap = "mx-auto max-w-[1320px] px-6 md:px-12";
 const serif = "font-[family-name:var(--font-serif)]";
 const label = "text-[11px] uppercase tracking-[0.35em]";
 
+function Label({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return <p className={`text-[14px] uppercase tracking-[0.3em] ${dark ? "text-white/60" : "text-grey-500"}`}>{children}</p>;
+}
+
 /* ---------- content ---------- */
 
 const SERVICES = [
@@ -112,7 +116,10 @@ export default function Home() {
         {/* ===== 2. MANIFESTO — white, centred like a poem ===== */}
         <section id="manifesto" className="bg-white py-32 md:py-48">
           <div className={`${wrap} text-center`}>
-            <h2 className={`${serif} mx-auto max-w-5xl text-[clamp(2.8rem,7vw,6.4rem)] font-bold leading-[0.95] tracking-[-0.03em]`}>
+            <div className="flex justify-center">
+              <Label>Manifesto</Label>
+            </div>
+            <h2 className={`${serif} mx-auto mt-12 max-w-5xl text-[clamp(2.8rem,7vw,6.4rem)] font-bold leading-[0.95] tracking-[-0.03em]`}>
               No rules.
               <br />
               <span className="font-normal italic">Except the ones that matter.</span>
@@ -163,7 +170,8 @@ export default function Home() {
           </div>
           <div className="flex items-center bg-white px-6 py-16 md:px-16 md:py-20">
             <div>
-              <h2 className={`${serif} text-[clamp(2.4rem,4.4vw,4rem)] font-bold leading-[1] tracking-[-0.03em]`}>
+              <Label>Our philosophy</Label>
+              <h2 className={`${serif} mt-10 text-[clamp(2.4rem,4.4vw,4rem)] font-bold leading-[1] tracking-[-0.03em]`}>
                 A little salt can change the entire dish.
               </h2>
               <p className={`${serif} mt-4 text-2xl italic text-grey-700`}>The same is true of a brand.</p>
@@ -188,7 +196,8 @@ export default function Home() {
         <section id="who-we-are" className="border-t border-grey-300 bg-white py-16 md:py-24">
           <div className={`${wrap} grid gap-16 md:grid-cols-[0.9fr_1.1fr]`}>
             <div>
-              <p className="text-2xl leading-snug">
+              <Label>Who we are</Label>
+              <p className="mt-10 text-2xl leading-snug">
                 A <span className={`${serif} italic`}>CreaTech</span> brand consulting and advertising studio that builds brands to{" "}
                 <b>grow</b> businesses.
               </p>
@@ -232,6 +241,9 @@ export default function Home() {
               </h2>
               <div className="md:pb-3">
                 <p className={`${serif} text-[clamp(1.8rem,3.4vw,3rem)] italic leading-tight`}>Live ’em first.</p>
+                <div className="mt-6">
+                  <Label>What we do</Label>
+                </div>
               </div>
             </div>
 
@@ -264,6 +276,7 @@ export default function Home() {
           <div className={wrap}>
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <h2 className={`${serif} text-[clamp(2.6rem,5.6vw,5rem)] font-bold leading-none tracking-[-0.03em]`}>What we stand for.</h2>
+              <Label dark>Core values</Label>
             </div>
             <div className="mt-10 border-t border-white/25">
               {VALUES.map(([a, b, d]) => (
@@ -291,7 +304,8 @@ export default function Home() {
         {/* ===== 7. THE MINDS — monogram left, story right ===== */}
         <section id="the-minds" className="bg-white py-16 md:py-24">
           <div className={wrap}>
-            <h2 className={`${serif} max-w-5xl text-[clamp(2.4rem,5.4vw,5rem)] font-bold leading-[1] tracking-[-0.03em]`}>
+            <Label>The minds</Label>
+            <h2 className={`${serif} mt-10 max-w-5xl text-[clamp(2.4rem,5.4vw,5rem)] font-bold leading-[1] tracking-[-0.03em]`}>
               Anyone can call themselves an agency. <span className="font-normal italic text-grey-500">Not everyone has been the client.</span>
             </h2>
 
@@ -338,8 +352,7 @@ export default function Home() {
             </p>
 
             <div className="my-14 text-center">
-              <p className={`${serif} text-[clamp(3rem,9vw,8.4rem)] italic leading-none text-salt`}>“Arre, namak nahi hai!”</p>
-              <p className={`${label} mt-10 text-black`}>Namak. Bang. SALT.</p>
+              <p className={`${serif} text-[clamp(2.4rem,6vw,5.4rem)] font-bold leading-none tracking-[-0.03em]`}>Namak. Bang. <span className="text-salt">SALT.</span></p>
             </div>
 
             <div className="grid grid-cols-2 border-t border-black md:grid-cols-4">
@@ -365,7 +378,8 @@ export default function Home() {
         <section id="faq" className="bg-white py-16 md:py-24">
           <div className={`${wrap} grid gap-14 md:grid-cols-[0.8fr_1.2fr]`}>
             <div>
-              <h2 className={`${serif} text-[clamp(2.6rem,5vw,4.6rem)] font-bold leading-[0.95] tracking-[-0.03em]`}>
+              <Label>Questions</Label>
+              <h2 className={`${serif} mt-10 text-[clamp(2.6rem,5vw,4.6rem)] font-bold leading-[0.95] tracking-[-0.03em]`}>
                 What’s at stake? <span className="font-normal italic">Ask us.</span>
               </h2>
               <p className="mt-6 text-lg text-grey-700">The first chat is FREE. The serious consulting? Paid, though. Phew! :-)</p>
