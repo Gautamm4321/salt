@@ -1,152 +1,80 @@
 @import "tailwindcss";
 
+/*
+ * SALT design tokens — taken from the SALT Brand Bible.
+ * "Minimal canvas. Maximum thought."
+ * White / black / grey as the foundation, then one unexpected SALT element: the orange crystal.
+ * 95% restraint, 5% flavour. Don't decorate, season.
+ */
 :root {
-  --brand-cream: #e8dcc8;
-  --cream-light: #f4ede1;
-  --cream-deep: #dccdb2;
-  --ink: #000000;
-  --accent: #f26a1b; /* stone orange, used sparingly like the logo */
-  --line: rgba(0, 0, 0, 0.14);
+  --white: #ffffff;
+  --black: #000000;
+  --grey-50: #faf9f7; /* matches the background of the crystal artwork */
+  --grey-100: #f2f2f2;
+  --grey-300: #d9d9d9;
+  --grey-500: #8a8a8a;
+  --grey-700: #4a4a4a;
+  --salt-orange: #fc5a00; /* sampled from the brand symbol artwork */
 }
 
 @theme inline {
-  --color-cream: var(--brand-cream);
-  --color-ink: var(--ink);
-  --color-accent: var(--accent);
-  --font-display: var(--font-syne);
-  --font-serif: var(--font-instrument);
-  --font-sans: var(--font-manrope);
-}
-
-/* Type scale at ~80% of Tailwind defaults (small sizes floored for legibility) */
-@theme {
-  --text-xs: 0.68rem;
-  --text-sm: 0.8rem;
-  --text-base: 0.92rem;
-  --text-lg: 0.98rem;
-  --text-xl: 1.06rem;
-  --text-2xl: 1.22rem;
-  --text-3xl: 1.5rem;
-  --text-4xl: 1.8rem;
-  --text-5xl: 2.4rem;
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-grey-50: var(--grey-50);
+  --color-grey-100: var(--grey-100);
+  --color-grey-300: var(--grey-300);
+  --color-grey-500: var(--grey-500);
+  --color-grey-700: var(--grey-700);
+  --color-salt: var(--salt-orange);
+  /* Brand Bible typefaces: Helvetica Neue + Times New Roman */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Times New Roman", Times, serif;
 }
 
 html {
-  background: var(--brand-cream);
-  color: var(--ink);
-}
-
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+  background: var(--white);
+  color: var(--black);
 }
 
 body {
-  min-height: 100vh;
-  color: var(--ink);
-  font-family: var(--font-manrope), system-ui, sans-serif;
-  background:
-    radial-gradient(1200px 800px at 85% -10%, #fbf6ee 0%, transparent 60%),
-    radial-gradient(900px 700px at -10% 40%, #f1e7d6 0%, transparent 60%),
-    radial-gradient(1000px 800px at 110% 80%, #e2d2b8 0%, transparent 55%),
-    linear-gradient(180deg, var(--cream-light) 0%, var(--brand-cream) 35%, var(--brand-cream) 70%, var(--cream-deep) 100%);
-  background-attachment: fixed;
-  overflow-x: hidden;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--brand-cream);
+  background: var(--salt-orange);
+  color: var(--white);
 }
 
-/* Film-grain overlay for a tactile, premium finish */
-.grain {
-  position: fixed;
-  inset: -50%;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  animation: grain 1.2s steps(6) infinite;
-}
-@keyframes grain {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-3%, 2%); }
-  40% { transform: translate(2%, -3%); }
-  60% { transform: translate(-2%, -1%); }
-  80% { transform: translate(3%, 3%); }
-  100% { transform: translate(0, 0); }
+/* Links: a plain underline on hover — no motion */
+.u-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-/* Custom cursor: hide the native one only on precise pointers (mouse/trackpad) */
-@media (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: none !important;
-  }
+details summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-sign {
+  transform: rotate(45deg);
 }
 
-/* Marquee */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 32s linear infinite;
-}
-@keyframes marquee {
-  to { transform: translateX(-50%); }
+/* Quiet refinements — no heavy motion */
+a,
+button {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Reveal defaults (GSAP takes over once hydrated) */
-[data-reveal] {
-  will-change: transform, opacity;
+/* One gentle fade as the page opens */
+.fade-in {
+  animation: fade-in 1.2s ease both;
 }
-
-/* Manifesto scroll-highlighted words */
-.mw {
-  opacity: 0.16;
-  transition: none;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-
-/* FAQ */
-details summary::-webkit-details-marker { display: none; }
-details[open] .faq-icon { transform: rotate(45deg); }
-
-/* Service rows */
-.service-row .service-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.service-row:hover .service-body,
-.service-row:focus-within .service-body,
-.service-row.is-open .service-body {
-  grid-template-rows: 1fr;
-}
-.service-row .service-arrow {
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.service-row:hover .service-arrow,
-.service-row.is-open .service-arrow {
-  transform: rotate(-45deg);
-}
-
-.link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.link-underline:hover {
-  background-size: 100% 1px;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .grain {
-    animation: none;
-  }
+  .fade-in { animation: none; }
 }

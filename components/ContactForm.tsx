@@ -3,24 +3,24 @@
 import { useState } from "react";
 
 const FIELDS = [
-  { name: "name", label: "Name", type: "text", autoComplete: "name" },
-  { name: "phone", label: "Phone", type: "tel", autoComplete: "tel" },
-  { name: "email", label: "E-mail", type: "email", autoComplete: "email" },
-  { name: "company", label: "Company", type: "text", autoComplete: "organization" },
+  { name: "name", label: "Name", type: "text", autoComplete: "name", required: true },
+  { name: "phone", label: "Phone", type: "tel", autoComplete: "tel", required: true },
+  { name: "email", label: "E-mail", type: "email", autoComplete: "email", required: true },
+  { name: "company", label: "Company", type: "text", autoComplete: "organization", required: false },
 ];
 
 /**
- * Brief form. NOTE: it isn't wired to a backend yet — connect it to an
- * API route / email service before going live.
+ * Brief form (styled for the black section).
+ * NOTE: not connected to a backend yet — wire it to an API route / email service before launch.
  */
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
 
   if (sent) {
     return (
-      <div className="rounded-[28px] border border-black/15 bg-[#f3ebdd]/70 p-10 backdrop-blur-md">
-        <p className="font-[family-name:var(--font-syne)] text-3xl font-bold uppercase">Brief received.</p>
-        <p className="mt-3 text-lg">We&apos;ll add the SALT and get back to you within 2 days. Guaranteed.</p>
+      <div className="border-t border-white/20 pt-10">
+        <p className="text-3xl font-bold">Brief received.</p>
+        <p className="mt-3 text-white/60">We’ll add the SALT and get back to you within 2 days. Guaranteed.</p>
       </div>
     );
   }
@@ -31,28 +31,23 @@ export default function ContactForm() {
         e.preventDefault();
         setSent(true);
       }}
-      className="rounded-[28px] border border-black/15 bg-[#f3ebdd]/60 p-7 backdrop-blur-md md:p-10"
     >
-      <div className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+      <div className="grid gap-x-10 sm:grid-cols-2">
         {FIELDS.map((f) => (
-          <label key={f.name} className="group block">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em]">{f.label}</span>
+          <label key={f.name} className="block">
+            <span className="text-[11px] uppercase tracking-[0.3em] text-white/50">{f.label}</span>
             <input
-              required={f.name !== "company"}
               name={f.name}
               type={f.type}
+              required={f.required}
               autoComplete={f.autoComplete}
-              className="mt-1 mb-5 w-full border-b border-black/30 bg-transparent py-2.5 text-lg text-black outline-none transition-colors placeholder:text-black/40 focus:border-black"
+              className="mt-2 mb-9 w-full border-b border-white/25 bg-transparent py-2 text-lg text-white outline-none focus:border-salt"
             />
           </label>
         ))}
       </div>
-      <button
-        type="submit"
-        className="group mt-4 inline-flex items-center gap-3 rounded-full bg-black px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#e8dcc8] transition-transform duration-300 hover:scale-[1.03]"
-      >
-        Submit
-        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+      <button type="submit" className="bg-white px-9 py-4 text-[12px] uppercase tracking-[0.3em] text-black hover:bg-salt hover:text-white">
+        Submit →
       </button>
     </form>
   );
