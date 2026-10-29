@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 /*
- * SALT design tokens — taken from the SALT Brand Bible.
+ * SALT design tokens — from the SALT Brand Bible.
  * "Minimal canvas. Maximum thought."
- * White / black / grey as the foundation, then one unexpected SALT element: the orange crystal.
- * 95% restraint, 5% flavour. Don't decorate, season.
+ * White / black / grey as the foundation + one unexpected SALT element: the orange crystal.
+ * 95% restraint, 5% flavour. Don't decorate — season.
+ *
+ * Typefaces used in the Brand Bible: Times New Roman (headings) and Helvetica Neue.
+ * Both are system fonts, so nothing is downloaded. On Windows, Helvetica Neue
+ * is not installed and falls back to Arial (its closest metric match).
  */
 :root {
   --white: #ffffff;
@@ -26,7 +30,6 @@
   --color-grey-500: var(--grey-500);
   --color-grey-700: var(--grey-700);
   --color-salt: var(--salt-orange);
-  /* Brand Bible typefaces: Helvetica Neue + Times New Roman */
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif: "Times New Roman", Times, serif;
 }
@@ -34,6 +37,7 @@
 html {
   background: var(--white);
   color: var(--black);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -41,6 +45,27 @@ body {
   color: var(--black);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Strict brand rule: no italic text anywhere */
+*,
+em,
+i,
+cite,
+address,
+dfn,
+var {
+  font-style: normal !important;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -48,33 +73,49 @@ body {
   color: var(--white);
 }
 
-/* Links: a plain underline on hover — no motion */
-.u-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+:focus-visible {
+  outline: 2px solid var(--salt-orange);
+  outline-offset: 3px;
 }
 
-details summary::-webkit-details-marker {
-  display: none;
-}
-details[open] .faq-sign {
-  transform: rotate(45deg);
-}
-
-/* Quiet refinements — no heavy motion */
 a,
-button {
+button,
+summary {
   transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* One gentle fade as the page opens */
-.fade-in {
-  animation: fade-in 1.2s ease both;
+/* FAQ: native <details>, swap the +/− sign */
+details summary::-webkit-details-marker {
+  display: none;
 }
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+details .sign-close {
+  display: none;
+}
+details[open] .sign-open {
+  display: none;
+}
+details[open] .sign-close {
+  display: inline;
+}
+
+/*
+ * Gentle opacity reveal (2D only). Content is fully visible unless JS is running
+ * and the visitor has not asked for reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  html.js .reveal.is-visible {
+    opacity: 1;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fade-in { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
 }
