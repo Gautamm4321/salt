@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// Fonts follow the SALT Brand Bible (Times New Roman + Helvetica Neue) — see globals.css.
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-jb" });
 
 export const metadata: Metadata = {
-  title: "SALT | No Brand Stays Bland — CreaTech Brand Consulting & Advertising",
+  title: "SALT | No Brand Stays Bland",
   description:
-    "SALT is a CreaTech brand consulting and advertising studio that builds brands to grow businesses. We find the human truth already inside your brand — and make it matter.",
+    "SALT is a CreaTech brand consulting and advertising studio that builds brands to grow businesses.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Marks JS as available so the gentle reveals can start hidden */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   );

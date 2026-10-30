@@ -1,32 +1,38 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, type ElementType, type ReactNode } from "react";
 
-/**
- * Adds `is-visible` to every `.reveal` element as it enters the viewport.
- * Opacity only (see globals.css) — no movement, and nothing at all for reduced-motion users.
- */
-export default function Reveal() {
+/** Fades its content in once when it scrolls into view. */
+export default function Reveal({
+  as: Tag = "div",
+  className,
+  delay = 0,
+  children,
+}: {
+  as?: ElementType;
+  className?: string;
+  delay?: number;
+  children: ReactNode;
+}) {
+  const ref = useRef<HTMLElement>(null);
   useEffect(() => {
-    const items = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
-    if (!("IntersectionObserver" in window)) {
-      items.forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
+    const el = ref.current;
+    if (!el) return;
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-in");
+          io.disconnect();
+        }
       },
-      { threshold: 0 }
+      { rootMargin: "0px 0px -10% 0px" }
     );
-    items.forEach((el) => io.observe(el));
+    io.observe(el);
     return () => io.disconnect();
   }, []);
-
-  return null;
+  return (
+    <Tag ref={ref} data-reveal className={className} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>
+      {children}
+    </Tag>
+  );
 }
