@@ -58,14 +58,14 @@ export default function HowWeWork() {
 
         {/* 02 — The process */}
         <section data-frame className="border-t border-line">
-          <div className="mx-auto max-w-[1100px] px-5 py-20 sm:px-10 md:py-28">
-            <Reveal className="mb-14 md:mb-20">
+          <div className="mx-auto max-w-[1100px] px-5 py-16 sm:px-10 sm:py-20 md:py-28">
+            <Reveal className="mb-12 md:mb-20">
               <p className="label">02 / The process</p>
               <h2 className="mt-4 text-[clamp(1.75rem,2.6vw,2.5rem)] font-normal uppercase leading-[1.15] tracking-[-0.01em]">
                 Working with SALT
               </h2>
             </Reveal>
-            <ProcessTimeline steps={steps} end="No Brand Stays Bland." />
+            <ProcessTimeline steps={steps} />
           </div>
         </section>
 

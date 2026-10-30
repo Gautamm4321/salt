@@ -33,7 +33,7 @@ export default function Home() {
           <Section
             no="01"
             label="Manifesto"
-            className="!border-t-0 md:min-h-[calc(100svh-var(--header-h))] md:[&>div]:min-h-[calc(100svh-var(--header-h))] md:[&>div]:content-center"
+            className="!border-t-0 [&>div]:min-h-[calc(100svh-var(--header-h))] [&>div]:content-center"
             title={
               <>
                 No rules.
@@ -146,11 +146,11 @@ export default function Home() {
             <p className={body}>
               We bring creative thinking and technology together to challenge convention and turn ideas into action.
             </p>
-            <div className="mt-10 grid grid-cols-3 gap-4 border-t border-line pt-6">
+            <div className="mt-10 grid grid-cols-1 border-t border-line sm:grid-cols-3 sm:gap-4 sm:pt-6">
               {["More customers.", "More sales.", "Measurable impact."].map((t, i) => (
-                <div key={t}>
+                <div key={t} className="flex items-baseline gap-4 border-b border-line py-3 sm:block sm:border-0 sm:py-0">
                   <p className="label">0{i + 1}</p>
-                  <p className="mt-2 text-[15px] font-medium leading-snug">{t}</p>
+                  <p className="text-[15px] font-medium leading-snug sm:mt-2">{t}</p>
                 </div>
               ))}
             </div>

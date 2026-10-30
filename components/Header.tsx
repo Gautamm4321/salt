@@ -100,22 +100,39 @@ export default function Header({ intro = false }: { intro?: boolean }) {
         inert={!open}
         className={`fixed inset-0 z-40 bg-bg transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
       >
-        <ol className="mx-auto flex h-full max-w-[1440px] flex-col justify-center gap-1 px-5 pt-[var(--header-h)] sm:px-10">
+        {/* Desktop menu: large chapter titles, centred vertically */}
+        <ol className="mx-auto hidden h-full max-w-[1440px] flex-col justify-center gap-1 px-10 pt-[var(--header-h)] md:flex">
           {chapters.map((c) => (
             <li key={c.no}>
-              <Link
-                href={c.href}
-                onClick={() => setOpen(false)}
-                className="group flex items-baseline gap-5 py-1.5 sm:gap-8"
-              >
-                <span className="label w-6 transition-colors">{c.no}</span>
-                <span className="text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.03em] transition-colors">
+              <Link href={c.href} onClick={() => setOpen(false)} className="group flex items-baseline gap-8 py-1.5">
+                <span className="label w-6">{c.no}</span>
+                <span className="text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.03em] transition-opacity group-hover:opacity-60">
                   {c.title}
                 </span>
               </Link>
             </li>
           ))}
         </ol>
+
+        {/* Mobile menu: one even list from the top — caps, hairlines, chevrons */}
+        <div className="h-full overflow-y-auto px-5 pb-10 pt-[calc(var(--header-h)+8px)] md:hidden">
+          <ul className="border-b border-line">
+            {chapters.map((c) => (
+              <li key={c.no} className="border-t border-line first:border-t-0">
+                <Link
+                  href={c.href}
+                  onClick={() => setOpen(false)}
+                  className="flex h-[58px] items-center justify-between font-mono text-[14px] uppercase tracking-[0.12em] active:opacity-60"
+                >
+                  {c.title}
+                  <svg aria-hidden width="8" height="14" viewBox="0 0 8 14" fill="none" className="shrink-0">
+                    <path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="1.3" />
+                  </svg>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       {/* Intro: blank white screen, logo centred */}

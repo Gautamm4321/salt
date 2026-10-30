@@ -77,13 +77,13 @@ export default function ServiceStairs() {
                     aria-expanded={isOpen}
                     aria-controls={`service-${i}`}
                     style={{ gridColumn: `${i + 1} / span ${SPAN}` }}
-                    className={`group ml-[calc(var(--i)*3%)] flex h-10 w-[calc(100%-var(--i)*3%)] items-center justify-between gap-3 border-l-2 px-3 text-left transition-colors md:ml-0 md:w-auto ${
+                    className={`group ml-[calc(var(--i)*3%)] flex min-h-10 w-[calc(100%-var(--i)*3%)] items-center py-2.5 md:h-10 md:py-0 justify-between gap-3 border-l-2 px-3 text-left transition-colors md:ml-0 md:w-auto ${
                       isOpen ? "border-ink bg-[#e6e6e6]" : "border-transparent bg-[#f2f2f2] hover:bg-[#e9e9e9]"
                     }`}
                   >
                     <span className="flex min-w-0 items-baseline gap-3">
                       <span className="font-mono text-[11px]">{pad(i + 1)}</span>
-                      <span className="truncate text-[13px] font-medium">{service.title}</span>
+                      <span className="text-[13px] font-medium leading-snug md:truncate">{service.title}</span>
                     </span>
                     <span aria-hidden className="font-mono text-[13px]">{isOpen ? "−" : "+"}</span>
                   </button>

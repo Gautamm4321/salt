@@ -44,7 +44,7 @@ export default function WhatWeDo() {
 
           {/* 02 — The staircase (sits on its own white ground with its own column lines) */}
           <section data-frame className="relative border-t border-line bg-bg">
-            <div className="mx-auto max-w-[1320px] px-5 py-20 sm:px-10 md:py-24">
+            <div className="mx-auto max-w-[1320px] px-5 py-16 sm:px-10 sm:py-20 md:py-24">
               <Reveal className="mb-10 flex items-baseline justify-between gap-6 md:mb-14">
                 <p className="label">02 / Services</p>
                 <p className="label">09 steps · 06 phases</p>
@@ -57,7 +57,7 @@ export default function WhatWeDo() {
 
           {/* 03 — Three closing points, side by side */}
           <section data-frame className="relative border-t border-line">
-            <div className="mx-auto grid max-w-[1320px] gap-14 px-5 py-20 sm:px-10 md:grid-cols-3 md:gap-10 md:py-28">
+            <div className="mx-auto grid max-w-[1320px] gap-10 px-5 py-16 sm:px-10 sm:py-20 md:grid-cols-3 md:gap-10 md:py-28">
               {/* 01 — Three ways */}
               <Reveal>
                 <p className="text-[clamp(3.5rem,6vw,5rem)] font-bold leading-none tracking-[-0.04em]">01</p>
@@ -70,7 +70,7 @@ export default function WhatWeDo() {
               </Reveal>
 
               {/* 02 — Ask us */}
-              <Reveal delay={100}>
+              <Reveal delay={100} className="border-t border-line pt-10 md:border-0 md:pt-0">
                 <p className="text-[clamp(3.5rem,6vw,5rem)] font-bold leading-none tracking-[-0.04em]">02</p>
                 <h3 className="mt-6 text-lg font-medium tracking-[-0.01em]">Ask us. The first chat is free.</h3>
                 <p className="mt-3 text-[15px] leading-[1.7]">
@@ -86,7 +86,7 @@ export default function WhatWeDo() {
               </Reveal>
 
               {/* 03 — How we work (next chapter) */}
-              <Reveal delay={200}>
+              <Reveal delay={200} className="border-t border-line pt-10 md:border-0 md:pt-0">
                 <p className="text-[clamp(3.5rem,6vw,5rem)] font-bold leading-none tracking-[-0.04em]">03</p>
                 <h3 className="mt-6 text-lg font-medium tracking-[-0.01em]">
                   <Link href="/how-we-work" className="underline-offset-4 hover:underline">
