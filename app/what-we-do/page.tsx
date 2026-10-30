@@ -57,7 +57,7 @@ export default function WhatWeDo() {
 
           {/* 03 — Three closing points, side by side */}
           <section data-frame className="relative border-t border-line">
-            <div className="mx-auto grid max-w-[1320px] gap-10 px-5 py-16 sm:px-10 sm:py-20 md:grid-cols-3 md:gap-10 md:py-28">
+            <div className="mx-auto grid max-w-[1320px] gap-10 px-5 py-16 sm:px-10 sm:py-20 md:grid-cols-3 md:gap-10 md:py-20">
               {/* 01 — Three ways */}
               <Reveal>
                 <p className="text-[clamp(3.5rem,6vw,5rem)] font-bold leading-none tracking-[-0.04em]">01</p>

@@ -27,7 +27,7 @@ export default function Section({
 }) {
   return (
     <section data-frame className={`relative border-t border-line ${className}`}>
-      <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-y-8 px-5 py-16 sm:px-10 sm:py-20 md:grid-cols-12 md:gap-y-10 md:gap-x-0 md:py-28">
+      <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-y-8 px-5 py-16 sm:px-10 sm:py-20 md:grid-cols-12 md:gap-y-10 md:gap-x-0 md:py-20">
         {/* Rail: number + active bar (desktop; on phones it joins the label line) */}
         <Reveal className="hidden md:col-span-2 md:-ml-px md:flex md:flex-col md:items-start md:gap-4">
           <span className="block h-[2px] w-8 bg-ink md:h-12 md:w-[2px]" />
