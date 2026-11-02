@@ -54,12 +54,12 @@ export default function Header({ intro = false }: { intro?: boolean }) {
       {/* Logo (moves from the centre of the screen into the header) */}
       <Link href="/" aria-label="SALT — home" className="salt-logo" onClick={() => setOpen(false)}>
         <Image
-          src="/Logo Opt-Photoroom.png"
+          src="/Logo-salt.png"
           alt="SALT"
-          width={1340}
-          height={542}
+          width={1173}
+          height={269}
           loading="eager"
-          sizes="520px"
+          sizes="(min-width: 640px) 680px, 80vw"
           className="h-auto w-full"
         />
       </Link>
@@ -139,6 +139,10 @@ export default function Header({ intro = false }: { intro?: boolean }) {
       {intro && (
         <div className="relative h-svh" aria-hidden>
           <p className="scroll-hint label absolute inset-x-0 bottom-8 text-center">Scroll</p>
+          {/* Tagline: bottom-right; fades and lifts away as you scroll, returns when you scroll back up */}
+          <p className="intro-tagline absolute bottom-20 right-5 text-[clamp(1.5rem,2.6vw,2.5rem)] font-light leading-none tracking-[-0.02em] sm:bottom-8 sm:right-10">
+            No Brand Stays Bland
+          </p>
         </div>
       )}
     </div>
